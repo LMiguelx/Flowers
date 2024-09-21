@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/flowers.png" type="image/x-icon">
+    <title>Feliz Primavera</title>
+    <style>
+        /* Estilos generales para el cuerpo */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e4292948;
+            overflow: hidden; /* Evitar el desplazamiento en la página cuando el modal está abierto */
+        }
+
+        /* Estilos para el modal */
+        .modal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .modal-content {
+            background: rgb(131, 107, 107);
+            border-radius: 8px;
+            padding: 20px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-header {
+            font-size: 24px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .modal-header::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background-size: cover;
+        }
+
+        .modal-body {
+            margin-bottom: 20px;
+        }
+
+        .modal-footer {
+            text-align: right;
+        }
+
+        .modal-footer button {
+            padding: 10px 20px;
+            background-color: #f8c202;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .modal-footer button:hover {
+            background-color: #e0a800;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: calc(100% - 22px);
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #48f802;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #ff00dd;
+        }
+
+        /* Hacer que el modal sea responsive */
+        @media (max-width: 600px) {
+            .modal-content {
+                width: 95%;
+            }
+        }
+        /* Estilos para el icono flotante */
+        .floating-icon {
+            position: fixed;
+            bottom: 20px; /* Ajusta la distancia desde el fondo */
+            right: 20px;  /* Ajusta la distancia desde el borde derecho */
+            width: 50px;  /* Ajusta el tamaño del icono */
+            height: 50px; /* Ajusta el tamaño del icono */
+            cursor: pointer;
+            z-index: 1000; /* Asegura que el icono esté sobre otros elementos */
+        }
+
+        /* Estilos para el tooltip */
+        .tooltip {
+            position: fixed;
+            bottom: 80px; /* Ajusta la distancia desde el icono */
+            right: 20px; /* Ajusta la distancia desde el borde derecho */
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            display: none; /* Oculto por defecto */
+            white-space: nowrap;
+            z-index: 1000; /* Asegura que el tooltip esté sobre otros elementos */
+        }
+
+        .tooltip.show {
+            display: block; /* Muestra el tooltip */
+        }
+    </style>
+</head>
+<body>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Ingresa tu nombre</h2>
+            </div>
+            <div class="button">
+                <form id="name-form">
+                    <input type="text" id="user-name" placeholder="Tu nombre" required>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+        <!-- Icono flotante con tooltip -->
+        <img src="img/tik.png" alt="Ícono de Tik" class="floating-icon" id="icon">
+        <div class="tooltip" id="tooltip">
+            Autor: de Luis Miguel
+        </div>
+
+    <script>
+        document.getElementById('name-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita el envío del formulario
+            var userName = encodeURIComponent(document.getElementById('user-name').value);
+            // Redirigir a carta.html con el nombre como parámetro
+            window.location.href = `carta.html?name=${userName}`;
+        });
+        document.getElementById('icon').addEventListener('click', function() {
+            alert('Autor: de Luis Miguel');
+        });
+
+        document.getElementById('icon').addEventListener('mouseover', function() {
+            document.getElementById('tooltip').classList.add('show');
+        });
+
+        document.getElementById('icon').addEventListener('mouseout', function() {
+            document.getElementById('tooltip').classList.remove('show');
+        });
+    </script>
+</body>
+</html>

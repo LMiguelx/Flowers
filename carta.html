@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/flowers.png" type="image/x-icon">
+    <title>Feliz Primavera</title>
+    <style>
+        /* Estilos generales para el cuerpo */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        /* Estilos para el contenedor */
+        .container {
+            margin: 0 auto;
+            max-width: 600px;
+            border: 2px solid #f5a3b1; /* Rosa claro */
+            padding: 20px;
+            border-radius: 15px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos para el título */
+        h1 {
+            color: #d18b9c; /* Rosa suave */
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        /* Estilos para el mensaje general */
+        .greetings {
+            font-size: 1.2em;
+            margin: 20px 0;
+            color: #777;
+        }
+
+        /* Estilos para el nombre y "Querida" */
+        .name-placeholder span {
+            font-weight: bold;
+            font-size: 1.5em;
+            color: #f36f6f; /* Rojo coral */
+        }
+
+        /* Estilo para el botón */
+        .button {
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #f5a3b1; /* Rosa claro */
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e89b9b; /* Rosa medio */
+        }
+
+        a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+        /* Estilos para el icono flotante */
+        .floating-icon {
+            position: fixed;
+            bottom: 20px; /* Ajusta la distancia desde el fondo */
+            right: 20px;  /* Ajusta la distancia desde el borde derecho */
+            width: 50px;  /* Ajusta el tamaño del icono */
+            height: 50px; /* Ajusta el tamaño del icono */
+            cursor: pointer;
+            z-index: 1000; /* Asegura que el icono esté sobre otros elementos */
+        }
+
+        /* Estilos para el tooltip */
+        .tooltip {
+            position: fixed;
+            bottom: 80px; /* Ajusta la distancia desde el icono */
+            right: 20px; /* Ajusta la distancia desde el borde derecho */
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            display: none; /* Oculto por defecto */
+            white-space: nowrap;
+            z-index: 1000; /* Asegura que el tooltip esté sobre otros elementos */
+        }
+
+        .tooltip.show {
+            display: block; /* Muestra el tooltip */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Feliz 21 de septiembre </h1>
+        
+        <p>Hoy quiero recordarte que, sin importar los desafíos, nunca te rindas.
+             Eres fuerte, valiosa y siempre encontrare la forma de que estes bien.</p>
+        <div class="greetings name-placeholder" id="greetings1"></div>
+        <div class="greetings" id="greetings2"></div>
+
+        
+        <div class="button">
+            <button>
+                <a href="FLORES.html">Ver mis flores</a>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Icono flotante con tooltip -->
+    <img src="img/tik.png" alt="Ícono de Tik" class="floating-icon" id="icon">
+    <div class="tooltip" id="tooltip">
+        Autor: de Luis Miguel
+        
+    </div>
+
+    <script>
+        function getParameterByName(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        const userName = getParameterByName('name');
+        if (userName) {
+            const greetings1 = document.getElementById('greetings1');
+            const greetings2 = document.getElementById('greetings2');
+
+            // Agregar "Querida" al primer grupo
+            const dearSpan = document.createElement('span');
+            dearSpan.textContent = "Feliz dia ";
+            greetings1.appendChild(dearSpan);
+
+            // Crear spans para el nombre en el primer grupo
+            for (let i = 0; i < userName.length; i++) {
+                const span1 = document.createElement('span');
+                span1.textContent = userName.charAt(i);
+                span1.id = `greeting1-${i + 2}`; // Ajustar ID para incluir "Querida"
+                greetings1.appendChild(span1);
+            }
+
+            // Mensaje en greetings2
+            greetings2.textContent = "¡Por este año no seras expectadora :)!";
+        }
+        document.getElementById('icon').addEventListener('click', function() {
+            alert('Autor: de Luis Miguel');
+        });
+
+        document.getElementById('icon').addEventListener('mouseover', function() {
+            document.getElementById('tooltip').classList.add('show');
+        });
+
+        document.getElementById('icon').addEventListener('mouseout', function() {
+            document.getElementById('tooltip').classList.remove('show');
+        });
+    </script>
+
+</body>
+</html>
